@@ -1,2 +1,2 @@
-# Project-Ellis
-Specs and implementation of the Ellis scripting language.
+# Project-Elysia
+Specs and implementation of the Elysia scripting language.
