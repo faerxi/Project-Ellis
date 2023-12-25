@@ -1,0 +1,25 @@
+{
+  "name": "elysia",
+  "displayName": "The Elysia Programming Language",
+  "description": "The syntax highlighting support for the Elysia programming language.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "elysia",
+      "aliases": ["Elysia", "elysia"],
+      "extensions": [".ely",".elysia"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "elysia",
+      "scopeName": "source.elysia",
+      "path": "./syntaxes/elysia.tmLanguage.json"
+    }]
+  }
+}

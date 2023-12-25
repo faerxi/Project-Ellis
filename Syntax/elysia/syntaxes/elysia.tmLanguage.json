@@ -1,0 +1,118 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Elysia",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+        {
+            "include": "#extended_keywords"
+        },
+		{
+			"include": "#strings"
+		},
+        {
+            "include": "#decorators"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#comments"
+        }
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+                {
+                    "name": "keyword.control.elysia",
+                    "match": "\\b(assert|assume|break|catch|continue|delete|else|for|freeze|if|loop|match|print|popc|pushc|requires|return|scan|then|throw|try|where|while|yield)\\b"
+			    },
+				{
+					"name": "keyword.other.elysia",
+					"match": "\\b(app|constinit|def|ext|impl|mac|new|pat|staticinit|sym|threadinit|type|use)\\b"
+				},
+                {
+                    "name": "keyword.operator.new.elysia",
+                    "match": "\\b(addressof|and|arityof|as|bitand|bitnot|bitor|call|deatom|deatomof|decay|decayof|dedyn|dedynof|demut|demutof|deref|derefof|errorof|exceptof|hasbase|hasclass|hastag|hastype|in|instanceof|keyof|kindof|layoutof|nameof|not|of|or|protoof|recur|sizeof|shl|shr|tagof|typeof|xor)\\b"
+                },
+                {
+                    "name": "storage.modifier.elysia",
+                    "match": "\\b(atom|auto|const|dyn|import|mut|ref|static|thread)\\b"
+                },
+                {
+                    "name": "meta.preprocessor.string",
+                    "match": "\\b(case|choice|cluster|generic|global|infer|just|local|null|strict|tag|this|union)\\b"
+                },
+                {
+                    "name": "constant.language.elysia",
+                    "match": "\\b(default|missing|otherwise|undefined|unit|_)\\b"
+                }
+            ]
+		},
+		"strings": {
+			"name": "string.quoted.double.elysia",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.elysia",
+					"match": "\\\\."
+				},
+                {
+                    "name": "string.interpolated",
+                    "begin": "\\$\\(",
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "include": "#keywords"
+                        },
+                        {
+                            "include": "#strings"
+                        },
+                        {
+                            "include": "#decorators"
+                        },
+                        {
+                            "include": "#types"
+                        },
+                        {
+                            "include": "#variables"
+                        }
+                    ]
+                }
+			]
+		},
+        "extended_keywords": {
+            "name": "keyword.other.elysia",
+            "match": "\\#\\w+\\b"
+        },
+        "decorators": {
+            "name": "keyword.other.unit.elysia",
+            "match": "@\\w+\\b"
+        },
+        "types": {
+            "name": "support.type.elysia",
+            "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+        },
+        "variables": {
+            "name": "variable.other.elysia",
+            "match": "\\b[a-z][a-zA-Z0-9_]*\\b"
+        },
+        "numbers": {
+            "name": "constant.numeric.elysia",
+            "match": "\\b[0-9]+\\b"
+        },
+        "comments": {
+            "name": "comment.line.double-slash.elysia",
+            "match": "//.*"
+        }
+	},
+	"scopeName": "source.elysia"
+}
