@@ -32,11 +32,11 @@
 			"patterns": [
                 {
                     "name": "keyword.control.elysia",
-                    "match": "\\b(assert|assume|break|catch|continue|delete|else|for|freeze|if|loop|match|print|popc|pushc|requires|return|scan|then|throw|try|where|while|yield)\\b"
+                    "match": "\\b(assert|assume|break|catch|constinit|continue|delete|else|for|freeze|if|impl|loop|match|print|popc|pushc|requires|return|scan|staticinit|then|threadinit|throw|try|where|while|yield)\\b"
 			    },
 				{
-					"name": "keyword.other.elysia",
-					"match": "\\b(app|constinit|def|ext|impl|mac|new|pat|staticinit|sym|threadinit|type|use)\\b"
+					"name": "storage.type.elysia",
+					"match": "\\b(app|def|ext|mac|new|pat|sym|type|use)\\b"
 				},
                 {
                     "name": "keyword.operator.new.elysia",
