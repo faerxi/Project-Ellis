@@ -1,0 +1,56 @@
+@export
+def List = [
+
+    // List is a function from top type to bottom type, just a reminder for the compiler.
+    List : [] -> ![]
+    List := tag Cons (T, List[T])
+          | tag null Nil
+
+    make (x, ...xs) -> Cons (x, recur (...xs))
+    make () -> Nil
+    
+    head (Cons (x : infer T, _ : List[T])) -> x
+    head Nil -> undefined
+
+    tail (Cons (_ : infer T, xs : List[T])) -> xs
+    tail Nil -> undefined
+
+    length (Cons (_, xs)) -> 1 + recur xs
+    length Nil -> 0
+
+    filter : [] -> [] -> ![]
+    // The stuff after the second top-level `->` is fully applied, i.e. no unbound variables, so no need to apply further.
+    filter (p : (infer T -> Bool)) -> (Cons (x : T, xs : List[T])) -> [ys = p -> xs -> filter] -> if p[x] then Cons (p, ys) else ys
+    filter _ Nil -> Nil
+
+    // A user-defined pattern.
+    Pair (x : infer T, y : T) ~ Cons (x, Cons (y, Nil))
+]
+
+// In another file:
+// Now the module List is imported, and List.List has an alias `List`
+use List = import List.List
+
+@override(print)
+app print_list (list : List[T]) -> {
+    x = mut ref list
+    loop {
+        match deref(x)
+            case Cons (y, ys) -> {
+                print "$(y), "
+                x <- ref ys
+            }
+            case otherwise -> {}
+    }
+}
+
+def x = List.Nil
+def y = List.make(1, 2, 3)
+
+print y             // 输出 1, 2, 3,
+
+app swap (Pair p~(ref x~(mut _), ref y~(mut _))) -> {
+    def t = x
+    x <- y
+    y <- t
+}
